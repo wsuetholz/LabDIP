@@ -1,10 +1,7 @@
 package dip.lab2;
 
-import dip.lab2.BaggageServiceTipCalculator.ServiceQuality;
-import static dip.lab2.BaggageServiceTipCalculator.ServiceQuality.FAIR;
-import static dip.lab2.BaggageServiceTipCalculator.ServiceQuality.GOOD;
-import static dip.lab2.BaggageServiceTipCalculator.ServiceQuality.POOR;
 import dip.lab2.api.TipCalculator;
+import dip.lab2.api.ServiceQuality;
 
 /**
  * An example low-level class. Does this class definition follow the DIP? If
@@ -22,33 +19,61 @@ public class FoodServiceTipCalculator implements TipCalculator {
     private static final double GOOD_RATE = 0.20;
     private static final double FAIR_RATE = 0.15;
     private static final double POOR_RATE = 0.10;
-    
+
     private double minimumBillAmount;
-    private double goodRate;
-    private double fairRate;
-    private double poorRate;
+    private double goodTipRate;
+    private double fairTipRate;
+    private double poorTipRate;
 
     private double totalBillAmount;
     private ServiceQuality serviceQuality;
 
     public FoodServiceTipCalculator(ServiceQuality serviceQuality, double totalBillAmount) {
-	this.setServiceRating(serviceQuality);
+	this.setServiceQuality(serviceQuality);
 	this.setTotalBillAmount(totalBillAmount);
 	minimumBillAmount = MIN_BILL;
-	goodRate = GOOD_RATE;
-	fairRate = FAIR_RATE;
-	poorRate = POOR_RATE;
+	goodTipRate = GOOD_RATE;
+	fairTipRate = FAIR_RATE;
+	poorTipRate = POOR_RATE;
     }
 
-    public final void setTotalBillAmount(double TotalBillAmount) {
-	if (TotalBillAmount < MIN_BILL) {
+    public final void setTotalBillAmount(double totalBillAmount) {
+	if (totalBillAmount < MIN_BILL) {
 	    throw new IllegalArgumentException(BILL_ENTRY_ERR);
 	}
-	bill = billAmt;
+	this.totalBillAmount = totalBillAmount;
     }
 
-    public final void setServiceRating(ServiceQuality q) {
-	serviceQuality = q;
+    public double getMinimumBillAmount() {
+	return minimumBillAmount;
+    }
+
+    public void setMinimumBillAmount(double minimumBillAmount) {
+	this.minimumBillAmount = minimumBillAmount;
+    }
+
+    public double getGoodTipRate() {
+	return goodTipRate;
+    }
+
+    public void setGoodTipRate(double goodTipRate) {
+	this.goodTipRate = goodTipRate;
+    }
+
+    public double getFairTipRate() {
+	return fairTipRate;
+    }
+
+    public void setFairTipRate(double fairTipRate) {
+	this.fairTipRate = fairTipRate;
+    }
+
+    public double getPoorTipRate() {
+	return poorTipRate;
+    }
+
+    public void setPoorTipRate(double poorTipRate) {
+	this.poorTipRate = poorTipRate;
     }
 
     @Override
@@ -57,13 +82,13 @@ public class FoodServiceTipCalculator implements TipCalculator {
 
 	switch (serviceQuality) {
 	    case GOOD:
-		tip = bill * GOOD_RATE;
+		tip = totalBillAmount * goodTipRate;
 		break;
 	    case FAIR:
-		tip = bill * FAIR_RATE;
+		tip = totalBillAmount * fairTipRate;
 		break;
 	    case POOR:
-		tip = bill * POOR_RATE;
+		tip = totalBillAmount * poorTipRate;
 		break;
 	}
 
