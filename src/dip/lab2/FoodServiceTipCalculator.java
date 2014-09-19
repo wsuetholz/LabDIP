@@ -28,6 +28,15 @@ public class FoodServiceTipCalculator implements TipCalculator {
     private double totalBillAmount;
     private ServiceQuality serviceQuality;
 
+    public FoodServiceTipCalculator() {
+	this.setServiceQuality(ServiceQuality.GOOD);
+	this.setTotalBillAmount(0.0);
+	minimumBillAmount = MIN_BILL;
+	goodTipRate = GOOD_RATE;
+	fairTipRate = FAIR_RATE;
+	poorTipRate = POOR_RATE;
+    }
+
     public FoodServiceTipCalculator(ServiceQuality serviceQuality, double totalBillAmount) {
 	this.setServiceQuality(serviceQuality);
 	this.setTotalBillAmount(totalBillAmount);
@@ -38,7 +47,7 @@ public class FoodServiceTipCalculator implements TipCalculator {
     }
 
     public final void setTotalBillAmount(double totalBillAmount) {
-	if (totalBillAmount < MIN_BILL) {
+	if (totalBillAmount < minimumBillAmount) {
 	    throw new IllegalArgumentException(BILL_ENTRY_ERR);
 	}
 	this.totalBillAmount = totalBillAmount;
@@ -109,4 +118,25 @@ public class FoodServiceTipCalculator implements TipCalculator {
 	}
 	this.serviceQuality = serviceQuality;
     }
+
+    @Override
+    public String getPromptString() {
+	return "Total Bill Amount";
+    }
+
+    @Override
+    public String getCustomValueAsString() {
+	return (Double.toString(totalBillAmount));
+    }
+
+    @Override
+    public void setCustomValueFromString(String newValue) {
+	double oldAmount = totalBillAmount;
+	try {
+	    totalBillAmount = Double.parseDouble(newValue);
+	} catch (NumberFormatException e) {
+	    totalBillAmount = oldAmount;
+	}
+    }
+
 }

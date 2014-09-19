@@ -12,13 +12,13 @@ import dip.lab2.api.TipCalculator;
  * @author your name goes here
  */
 public class BaggageServiceTipCalculator implements TipCalculator {
+
 //
 //    private static final double MIN_BILL = 0.00;
 //    private static final double MAX_BILL = 100.00;
 //    private static final String BILL_ENTRY_ERR =
 //            "Error: bill must be between " + MIN_BILL + " and "
 //            + MAX_BILL;
-
     private static final double BASE_TIP_PER_BAG = 1.00;
 
     private static final double GOOD_RATE = 0.20;
@@ -32,6 +32,15 @@ public class BaggageServiceTipCalculator implements TipCalculator {
     private double baseTipPerBag;
     private int bagCount;
     private ServiceQuality serviceQuality;
+
+    public BaggageServiceTipCalculator() {
+	this.setServiceQuality(ServiceQuality.GOOD); // perform validation
+	this.setBagCount(0);
+	goodTipRate = GOOD_RATE;
+	fairTipRate = FAIR_RATE;
+	poorTipRate = POOR_RATE;
+	baseTipPerBag = BASE_TIP_PER_BAG; // set default value
+    }
 
     public BaggageServiceTipCalculator(ServiceQuality serviceQuality, int bagCount) {
 	this.setServiceQuality(serviceQuality); // perform validation
@@ -123,4 +132,25 @@ public class BaggageServiceTipCalculator implements TipCalculator {
 	}
 	this.serviceQuality = serviceQuality;
     }
+
+    @Override
+    public String getPromptString() {
+	return "Total Number of Bags";
+    }
+
+    @Override
+    public String getCustomValueAsString() {
+	return (Integer.toString(bagCount));
+    }
+
+    @Override
+    public void setCustomValueFromString(String newValue) {
+	int oldCount = bagCount;
+	try {
+	    bagCount = Integer.parseInt(newValue);
+	} catch (NumberFormatException e) {
+	    bagCount = oldCount;
+	}
+    }
+
 }
