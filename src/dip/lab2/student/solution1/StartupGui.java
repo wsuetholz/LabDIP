@@ -181,7 +181,7 @@ public class StartupGui extends javax.swing.JFrame {
 		    this.jLabel3.setText(tipCalc.getPromptString());
 		    this.jFormattedTextField1.setText(tipCalc.getCustomValueAsString());
 		    this.jServiceQualityChoices.setSelectedItem(tipCalc.getServiceQuality());
-		    tipAmount = tipCalc.calculateTip();
+		    tipAmount = tipCalc.getCalculatedTip();
 		    jTipAmount.setText(Double.toString(tipAmount));
 		} else {
 		    tipCalc = oldTipCalc;
@@ -199,7 +199,7 @@ public class StartupGui extends javax.swing.JFrame {
 	if (newValue != null) {
 	    tipCalc.setCustomValueFromString(newValue);
 	}
-	tipAmount = tipCalc.calculateTip();
+	tipAmount = tipCalc.getCalculatedTip();
 	jTipAmount.setText(Double.toString(tipAmount));
     }//GEN-LAST:event_jCalcTipButtonActionPerformed
 
@@ -209,7 +209,7 @@ public class StartupGui extends javax.swing.JFrame {
 	    ServiceQuality serviceQuality = (ServiceQuality) cb.getSelectedItem();
 	    if (serviceQuality != null) {
 		tipCalc.setServiceQuality(serviceQuality);
-		tipAmount = tipCalc.calculateTip();
+		tipAmount = tipCalc.getCalculatedTip();
 		jTipAmount.setText(Double.toString(tipAmount));
 	    }
 	}
@@ -222,7 +222,7 @@ public class StartupGui extends javax.swing.JFrame {
 	    String newValue = ftf.getSelectedText();
 	    if (newValue != null) {
 		tipCalc.setCustomValueFromString(newValue);
-		tipAmount = tipCalc.calculateTip();
+		tipAmount = tipCalc.getCalculatedTip();
 		jTipAmount.setText(Double.toString(tipAmount));
 	    }
 	}

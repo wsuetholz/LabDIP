@@ -28,13 +28,13 @@ public class Startup {
 
 	tipCalculationManager = new TipCalculationManager (baggageTips);
 	
-	System.out.println ( "The Baggage Tip for 4 bags, with Good service is $" + tipCalculationManager.calculateTips() + ".");
+	System.out.println ( "The Baggage Tip for 4 bags, with Good service is $" + tipCalculationManager.performTipCalculation() + ".");
 
 	foodTips = new FoodServiceTipCalculator (ServiceQuality.GOOD, 15.00);
 	
 	tipCalculationManager.setTipCalculator(foodTips);
 
-	System.out.println ( "The Food Tip for a $15.00 total bill, with Good service is $" + tipCalculationManager.calculateTips() + ".");	
+	System.out.println ( "The Food Tip for a $15.00 total bill, with Good service is $" + tipCalculationManager.performTipCalculation() + ".");	
     }
 
 }

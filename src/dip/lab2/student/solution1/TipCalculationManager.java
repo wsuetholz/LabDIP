@@ -39,7 +39,7 @@ public class TipCalculationManager {
 	return tipCalculator.getServiceQuality();
     }
 
-    public double calculateTips() {
-	return tipCalculator.calculateTip();
+    public double performTipCalculation() {
+	return tipCalculator.getCalculatedTip();
     }
 }
