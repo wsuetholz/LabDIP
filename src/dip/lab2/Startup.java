@@ -1,8 +1,9 @@
 package dip.lab2;
 
-import dip.lab2.api.ServiceQuality;
 // An useful import if you need it.
-import dip.lab2.api.TipCalculator;
+import java.text.NumberFormat;
+// Another useful import if you need it.
+import javax.swing.JOptionPane;
 
 /**
  * Just a test class for input and output.
@@ -18,24 +19,13 @@ import dip.lab2.api.TipCalculator;
  * @author your name goes here
  */
 public class Startup {
+    public static enum ServiceQuality {
+           GOOD, FAIR, POOR
+    };
+ 
     public static void main(String[] args) {
-	BaggageServiceTipCalculator baggageTips;
-	FoodServiceTipCalculator foodTips;
-	TipCalculator tipCalculator;
-	
-	TipCalculationManager tipCalculationManager;
-	
-	baggageTips = new BaggageServiceTipCalculator (ServiceQuality.GOOD, 4);
-
-	tipCalculationManager = new TipCalculationManager (baggageTips);
-	
-	System.out.println ( "The Baggage Tip for 4 bags, with Good service is $" + tipCalculationManager.calculateTips() + ".");
-
-	foodTips = new FoodServiceTipCalculator (ServiceQuality.GOOD, 15.00);
-	
-	tipCalculationManager.setTipCalculator(foodTips);
-
-	System.out.println ( "The Food Tip for a $15.00 total bill, with Good service is $" + tipCalculationManager.calculateTips() + ".");	
+        
+        
     }
 
 }
