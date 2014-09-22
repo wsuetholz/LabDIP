@@ -1,6 +1,5 @@
 package dip.lab1.student.solution1;
 
-import dip.lab1.*;
 
 /**
  * An implementation sub-class of an Employee. These are low-level classes
