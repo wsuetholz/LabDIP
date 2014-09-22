@@ -180,6 +180,7 @@ public class StartupGui extends javax.swing.JFrame {
 		if (tipCalc != null) {
 		    this.jLabel3.setText(tipCalc.getPromptString());
 		    this.jFormattedTextField1.setText(tipCalc.getCustomValueAsString());
+		    this.jServiceQualityChoices.setSelectedItem(tipCalc.getServiceQuality());
 		    tipAmount = tipCalc.calculateTip();
 		    jTipAmount.setText(Double.toString(tipAmount));
 		} else {
